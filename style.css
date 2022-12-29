@@ -60,7 +60,7 @@ body {
 .winner {
   position: absolute;
   font-size: 4rem;
-  bottom: 2rem;
+  top: 85vh;
 }
 
 @media (max-width: 1024px) {
@@ -74,11 +74,10 @@ body {
   }
 
   .square {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 
   .winner {
     font-size: 3rem;
-    bottom: 1rem;
   }
 }
