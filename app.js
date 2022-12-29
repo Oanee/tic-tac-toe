@@ -16,14 +16,14 @@ const o = [];
 
 Array.from(squares).forEach(function (square, index) {
   function press() {
-    let i = 0;
-
     if (pressTimes % 2 == false) {
       square.textContent = "x";
       x.push(index);
+      x.sort();
     } else if (pressTimes % 2 == true) {
       square.textContent = "o";
       o.push(index);
+      o.sort();
     }
 
     if (square.hasChildNodes()) {
@@ -32,30 +32,24 @@ Array.from(squares).forEach(function (square, index) {
 
     pressTimes++;
 
-    // winningcondition order check
+    // removeEventLitener work properly
 
-    for (; i < winningConditions.length; i++) {
+    for (let i = 0; i < winningConditions.length; i++) {
       if (winningConditions[i].every((val, index) => val === x[index])) {
         winner.innerText = "X win!";
-        pressTimes = 10;
+        square.removeEventListener("click", press);
       }
     }
 
-    for (; i < winningConditions.length; i++) {
+    for (let i = 0; i < winningConditions.length; i++) {
       if (winningConditions[i].every((val, index) => val === o[index])) {
         winner.innerText = "O win!";
         square.removeEventListener("click", press);
       }
     }
 
-    // removeEventLitener work properly
-
     if (pressTimes == 9) {
       winner.innerText = "It's a draw!";
-      square.removeEventListener("click", press);
-    }
-
-    if (pressTimes == 10) {
       square.removeEventListener("click", press);
     }
   }
